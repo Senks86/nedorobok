@@ -1,0 +1,10 @@
+{%extends 'base.html'%}
+{%block content%}
+<h2>Ви впевнені, що хочете видалити це оголошення?</h2>
+<p><strong>{{ ad.title }}</strong></p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Так, видалити</button>
+    <a href="{%url 'ads:list'%}">Скасувати</a>
+</form>
+{%endblock%}

@@ -1,0 +1,33 @@
+<div class="sidebar">
+    <div class="sidebar-box">
+        <h4>Про проекте</h4>
+        <p>Невеликий сайт для спілкування.</p>
+
+        <div class="sidebar-buttons">
+              <nav>
+                {% if user.is_authenticated %}
+                  <span>Привіт, {{ user.username }}!</span>
+                  <a href="{% url 'profile' %}">Профіль</a>
+                  <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Вийти</button>
+                  </form>
+                {% else %}
+                  <a href="{% url 'login' %}">Увійти</a>
+                  <a href="{% url 'signup' %}">Реєстрація</a>
+                {% endif %}
+              </nav>
+        </div>
+    </div>
+
+    <div class="sidebar-box">
+        <h4>Навігація</h4>
+
+        <a href="/" class="nav-link">Головна</a><br>
+        <a href="/ads/" class="nav-link">Оголошення</a><br>
+        <a href="/about/" class="nav-link">Про нас</a><br>
+        <a href="/notifications/" class="nav-link">🔔Сповіщення🔔</a>
+
+    </div>
+
+</div>

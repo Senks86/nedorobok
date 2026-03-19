@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #dae0e6;
+}
+
+.header {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff4500;
+}
+
+.search {
+    width: 40%;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+.profile a {
+    text-decoration: none;
+    color: black;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.layout {
+    display: flex;
+    width: 80%;
+    margin-top: 20px;
+}
+
+.posts {
+    width: 70%;
+}
+
+.post-card {
+    display: flex;
+    background: white;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.vote {
+    text-align: center;
+    width: 40px;
+    font-weight: bold;
+    color: gray;
+}
+
+.post-content h3 {
+    margin: 0;
+}
+
+.post-content p {
+    margin: 5px 0;
+}
+
+.sidebar {
+    width: 30%;
+    margin-left: 20px;
+}
+
+.sidebar-box {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.sidebar-box h4 {
+    margin-top: 0;
+}
+
+
+.sidebar-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.btn {
+    background-color: #ff4500;
+    color: white;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #e03d00;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: black;
+}
+
+.nav-link:hover {
+    color: #ff4500;
+}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>❌⭕ Крестики-нолики</h2>
+
+<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
+<script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+<style>
+#board{
+display:grid;
+grid-template-columns:repeat(3,100px);
+gap:5px;
+margin-top:20px;
+}
+
+.cell{
+width:100px;
+height:100px;
+background:#eee;
+font-size:40px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+border:1px solid black;
+}
+</style>
+
+<div id="board"></div>
+
+<py-script>
+from js import document
+
+board = document.getElementById("board")
+current = "X"
+
+def click(event):
+    global current
+
+    cell = event.target
+
+    if cell.innerHTML == "":
+        cell.innerHTML = current
+        current = "O" if current == "X" else "X"
+
+for i in range(9):
+
+    cell = document.createElement("div")
+    cell.classList.add("cell")
+
+    cell.addEventListener("click", click)
+
+    board.appendChild(cell)
+
+</py-script>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>🔔 Сповіщення 🔔</h2>
+{% if user.is_authenticated %}
+
+{% for n in notes %}
+
+<p>
+    {{ n.message }}
+    <br>
+    <small>{{ n.created_at }}</small>
+</p>
+{% empty %}
+<p>Немає сповіщень</p>
+
+{% endfor %}
+{% else %}
+<p>Авторизуйтесь, щоб побачити сповіщення</p>
+{% endif %}
+<div class="layout">
+<div class="posts">
+    </div>
+    {% include "sidebar.html" %}
+    </div>
+{% endblock %}

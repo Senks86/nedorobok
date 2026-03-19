@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Профіль{% endblock %}
+{% block content %}
+<div class="layout">
+<div class="posts">
+<h2>Профіль</h2>
+<p>Логін: <b>{{ user.username }}</b></p>
+<p>Email: {{ user.email|default:"—" }}</p>
+
+<p>Групи:
+  {% if user.groups.all %}
+    {% for g in user.groups.all %} <span>{{ g.name }}</span> {% empty %} — {% endfor %}
+  {% else %} — {% endif %}
+</p>
+</div>
+    {% include "sidebar.html" %}
+</div>
+{% endblock %}
+

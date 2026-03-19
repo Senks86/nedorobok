@@ -1,0 +1,29 @@
+{% load static %}
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Портал групи{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">🔴 Portal group 🔴</div>
+    <input type="text" placeholder="Пошук..." class="search">
+    <div class="profile">
+        {% if user.is_authenticated %}
+            {{ user.username }}
+        {% else %}
+            <a href="/login/">Войти</a>
+        {% endif %}
+    </div>
+      <a href="/notifications/">🔔</a>
+  </header>
+  <hr>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
+

@@ -1,0 +1,95 @@
+{%extends 'base.html'%}
+{%block content%}
+<div class="layout">
+<div class="posts">
+<h1>Оголошення</h1>
+    {%if user.is_authenticated and user.is_staff%}
+    <p><a href="{%url 'ads:create'%}">➕Додати оголошення</a></p>
+    {%endif%}
+    {% for ad in ads %}
+    <div style="border: 5px double rgb(129, 161, 255); padding: 10px; margin-bottom: 10px;">
+        <h3>{{ ad.title }}</h3>
+        <p>{{ ad.description }}</p>
+        <small>
+            Автор: {{ ad.author.username }} | 
+            {{ ad.created_at|date:"d.m.Y H:i" }} |
+
+        </small>
+
+
+        {%if can_add%}
+        <p>
+            <a href="{%url 'ads:edit' ad.id%}">✏️Редагувати</a>
+            <a href="{%url 'ads:delete' ad.id%}">🗑️Видалити</a>
+        </p>
+        {%endif%}
+            {% if user.is_authenticated %}
+            <a href="{%url 'ads:toggle_like' ad.id%}">
+                ❤️ {{ ad.likes.count }}
+            </a>
+            {%else%}
+                ❤️ {{ ad.likes.count }}
+            <small>(Увійдіть, щоб лайкати)</small>
+        {% endif %}
+
+        <h4>Коментарі ({{ ad.comments.count }})</h4>
+        {% for comment in ad.comments.all %}
+        {% if not comment.parent %}
+
+        <p>
+            <strong>
+                {{ comment.author.username }}
+            </strong>
+            {{ comment.text }}
+            <br>
+            <small>
+                {{ comment.created_at}}
+            </small>
+        </p>
+        {% if comment.author == user %}
+        <a href="{%url 'ads:delete_comment' comment.id%}">❌ видалити</a>
+        {% endif %}
+        {% for reply in comment.replies.all %}
+        <p style="margin-left: 30px">
+            ↳
+            <strong>
+                {{ reply.author }}
+            </strong>: {{ reply.text }}
+        </p>
+
+        {%endfor%}
+
+        {% if user.is_authenticated %}
+
+        <form action="{%url 'ads:reply_comment' comment.id%}" method="post">
+            {% csrf_token %}
+            <input type="text" name="text" placeholder="відповісти..." required>
+            <button type="submit">↩</button>
+        </form>
+
+        {% endif %}
+
+        {% endif %}
+
+        {% empty %}
+        <p>Поки немає коментарів</p>
+
+
+        {%endfor%}
+
+        {% if user.is_authenticated %}
+        <form action="{%url 'ads:comment' ad.id%}" method="post">
+            {% csrf_token %}
+            <textarea name="text" rows="2" required></textarea>
+            <br>
+            <button type="submit">💬Додати коментар💬</button>
+        </form>
+        {% endif %}
+    </div>
+    {% empty %}
+    <div>Поки немає оголошень.</div>
+    {% endfor %}
+    </div>
+    {% include "sidebar.html" %}
+    </div>
+{%endblock%}
