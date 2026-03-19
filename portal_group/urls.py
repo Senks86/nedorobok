@@ -19,10 +19,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from apps.ads import views as ads_views
+from apps.accounts import views as ads_views
 
 urlpatterns = [
-    #path('', ads_views.HomeView.as_view(), name='home'),
+    path('', ads_views.home, name='home'),
     path('admin/', admin.site.urls),
     path('accounts/', include('apps.accounts.urls')),
     path('ads/', include('apps.ads.urls')),

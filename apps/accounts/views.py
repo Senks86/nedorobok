@@ -31,4 +31,7 @@ class AboutView(TemplateView):
 class NotificationView(TemplateView):
     template_name = "notifications.html"
 
+def home(request):
+    return render(request, 'home.html')
+
 
